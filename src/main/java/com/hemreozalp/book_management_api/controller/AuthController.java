@@ -2,7 +2,7 @@ package com.hemreozalp.book_management_api.controller;
 
 import com.hemreozalp.book_management_api.model.User;
 import com.hemreozalp.book_management_api.service.AuthService;
-import com.hemreozalp.book_management_api.util.JwtServcice;
+import com.hemreozalp.book_management_api.util.JwtService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,10 +16,10 @@ import java.util.Map;
 public class AuthController {
 
     private final AuthService authService;
-    private final JwtServcice jwtService;
+    private final JwtService jwtService;
 
     public AuthController(AuthService authService,
-                          JwtServcice jwtService) {
+                          JwtService jwtService) {
         this.authService = authService;
         this.jwtService = jwtService;
     }

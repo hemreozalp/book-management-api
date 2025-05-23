@@ -12,7 +12,7 @@ import java.security.Key;
 import java.util.Date;
 
 @Service
-public class JwtServcice {
+public class JwtService {
 
     private static final  long EXPIRATION_TIME = 1000 * 60 * 60;
     private static final String SECRET_KEY = "my-super-secret-key-which-is-at-least-32-characters";

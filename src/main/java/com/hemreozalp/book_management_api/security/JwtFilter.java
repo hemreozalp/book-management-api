@@ -2,7 +2,7 @@ package com.hemreozalp.book_management_api.security;
 
 import com.hemreozalp.book_management_api.model.User;
 import com.hemreozalp.book_management_api.repository.UserRepository;
-import com.hemreozalp.book_management_api.util.JwtServcice;
+import com.hemreozalp.book_management_api.util.JwtService;
 import jakarta.servlet.*;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -17,12 +17,12 @@ import java.util.Optional;
 @Component
 public class JwtFilter implements Filter {
 
-    private final JwtServcice jwtServcice;
+    private final JwtService jwtService;
     private final UserRepository userRepository;
 
-    public JwtFilter(JwtServcice jwtServcice,
+    public JwtFilter(JwtService jwtService,
                      UserRepository userRepository) {
-        this.jwtServcice = jwtServcice;
+        this.jwtService = jwtService;
         this.userRepository = userRepository;
     }
 
@@ -37,10 +37,10 @@ public class JwtFilter implements Filter {
             String token = authHeader.substring(7);
 
             try {
-                String username = jwtServcice.extractUsername(token);
+                String username = jwtService.extractUsername(token);
                 Optional<User> optUser = userRepository.findByUsername(username);
 
-                if (optUser.isPresent() && jwtServcice.validateToken(token, optUser.get())){
+                if (optUser.isPresent() && jwtService.validateToken(token, optUser.get())){
                     User user = optUser.get();
 
                     UsernamePasswordAuthenticationToken authentication =
